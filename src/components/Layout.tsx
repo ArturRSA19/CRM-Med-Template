@@ -6,7 +6,7 @@ import { useToast } from '@/hooks/use-toast'
 import { useEffect } from 'react'
 
 const navItems = [
-  { name: 'Cofre de ROI', path: '/', icon: Wallet },
+  { name: 'Dashboard IA', path: '/', icon: Wallet },
   { name: 'Live Feed', path: '/feed', icon: Activity },
   { name: 'Agenda', path: '/agenda', icon: Calendar },
 ]

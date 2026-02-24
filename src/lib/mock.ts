@@ -1,60 +1,89 @@
-export const kpiData = {
-  recovered: 48500,
-  pipeline: 154200,
-  rate: 18.5,
+// ─── Dashboard Metrics (IA-centric) ──────────────────────────────────────────
+
+export const dashboardMetrics = {
+  kpis: {
+    revenueAI: 85400,
+    revenueGrowthPercent: 23,
+    leadsQualified: 312,
+    appointmentsBooked: 145,
+    timeSavedHours: 124,
+  },
+
+  funnelData: [
+    { stage: 'Total de Leads',    count: 1200, fill: 'hsl(var(--chart-1))' },
+    { stage: 'Atendidos pela IA', count: 980,  fill: 'hsl(var(--chart-2))' },
+    { stage: 'Qualificados',      count: 420,  fill: 'hsl(var(--chart-3))' },
+    { stage: 'Agendados',         count: 145,  fill: 'hsl(var(--chart-4))' },
+  ],
+
+  doctorDistribution: [
+    { name: 'Dr. João', value: 78, fill: 'hsl(var(--chart-1))' },
+    { name: 'Dra. Ana', value: 67, fill: 'hsl(var(--chart-2))' },
+  ],
 }
 
-export const pipelineData = [
-  { stage: 'Contatos', count: 1200, fill: 'hsl(var(--chart-1))' },
-  { stage: 'Abordados', count: 850, fill: 'hsl(var(--chart-2))' },
-  { stage: 'Negociação', count: 320, fill: 'hsl(var(--chart-3))' },
-  { stage: 'Agendados', count: 145, fill: 'hsl(var(--chart-4))' },
-]
+// ─── Hot Opportunities ────────────────────────────────────────────────────────
 
-export const hotOpportunities = [
+export type AiStatus =
+  | 'Pronto para Agendar'
+  | 'Negociando Valores'
+  | 'Aguardando Humano'
+  | 'Agendamento Confirmado'
+
+export type HotOpportunity = {
+  id: string
+  patient: string
+  treatment: string
+  doctor: string | null
+  estimatedRevenue: number
+  aiStatus: AiStatus
+  isWaiting: boolean
+}
+
+export const hotOpportunities: HotOpportunity[] = [
   {
     id: '1',
     patient: 'Maria Silva',
     treatment: 'Implante Total',
-    value: 25000,
-    status: 'IA aguardando confirmação',
-    time: '10 min',
+    doctor: 'Dr. João',
+    estimatedRevenue: 25000,
+    aiStatus: 'Negociando Valores',
     isWaiting: false,
   },
   {
     id: '2',
     patient: 'Carlos Santos',
     treatment: 'Lente de Contato',
-    value: 18000,
-    status: 'Dúvida sobre parcelamento',
-    time: '22 min',
+    doctor: null,
+    estimatedRevenue: 18000,
+    aiStatus: 'Pronto para Agendar',
     isWaiting: false,
   },
   {
     id: '3',
     patient: 'Ana Oliveira',
     treatment: 'Invisalign',
-    value: 12000,
-    status: 'Pronta para agendar',
-    time: '1h',
+    doctor: 'Dra. Ana',
+    estimatedRevenue: 12000,
+    aiStatus: 'Agendamento Confirmado',
     isWaiting: false,
   },
   {
     id: '4',
     patient: 'Roberto Alves',
     treatment: 'Prótese Protocolo',
-    value: 15500,
-    status: 'IA negociando desconto',
-    time: '2h',
+    doctor: 'Dr. João',
+    estimatedRevenue: 15500,
+    aiStatus: 'Negociando Valores',
     isWaiting: false,
   },
   {
     id: '5',
     patient: 'Lucia Costa',
     treatment: 'Facetas',
-    value: 20000,
-    status: 'Aguardando Humano',
-    time: '3h',
+    doctor: null,
+    estimatedRevenue: 20000,
+    aiStatus: 'Aguardando Humano',
     isWaiting: true,
   },
 ]

@@ -1,6 +1,6 @@
 import { Bar, BarChart, Cell, XAxis, YAxis, Tooltip } from 'recharts'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
-import { pipelineData } from '@/lib/mock'
+import { dashboardMetrics } from '@/lib/mock'
 import {
   Card,
   CardContent,
@@ -9,27 +9,29 @@ import {
   CardDescription,
 } from '@/components/ui/card'
 
+const { funnelData } = dashboardMetrics
+
 const chartConfig = {
-  count: { label: 'Pacientes' },
-  Contatos: { color: 'hsl(var(--chart-1))' },
-  Abordados: { color: 'hsl(var(--chart-2))' },
-  Negociação: { color: 'hsl(var(--chart-3))' },
-  Agendados: { color: 'hsl(var(--chart-4))' },
+  count: { label: 'Leads' },
+  'Total de Leads':    { color: 'hsl(var(--chart-1))' },
+  'Atendidos pela IA': { color: 'hsl(var(--chart-2))' },
+  'Qualificados':      { color: 'hsl(var(--chart-3))' },
+  'Agendados':         { color: 'hsl(var(--chart-4))' },
 }
 
 export function FunnelChart() {
   return (
     <Card className="shadow-sm h-full">
       <CardHeader>
-        <CardTitle>Funil de Reativação</CardTitle>
-        <CardDescription>Fluxo da IA nos últimos 14 dias</CardDescription>
+        <CardTitle>Funil de Qualificação</CardTitle>
+        <CardDescription>Jornada dos leads nos últimos 30 dias</CardDescription>
       </CardHeader>
       <CardContent className="pb-0">
         <ChartContainer config={chartConfig} className="h-[250px] w-full">
           <BarChart
-            data={pipelineData}
+            data={funnelData}
             layout="vertical"
-            margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+            margin={{ left: 0, right: 16, top: 0, bottom: 0 }}
           >
             <XAxis type="number" hide />
             <YAxis
@@ -37,7 +39,7 @@ export function FunnelChart() {
               type="category"
               axisLine={false}
               tickLine={false}
-              width={100}
+              width={130}
               className="text-xs font-medium"
             />
             <Tooltip
@@ -45,7 +47,7 @@ export function FunnelChart() {
               content={<ChartTooltipContent />}
             />
             <Bar dataKey="count" radius={[0, 4, 4, 0]} barSize={32}>
-              {pipelineData.map((entry, index) => (
+              {funnelData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} />
               ))}
             </Bar>
