@@ -6,7 +6,7 @@ import { useToast } from '@/hooks/use-toast'
 import { useEffect } from 'react'
 
 const navItems = [
-  { name: 'Cofre de ROI', path: '/', icon: Wallet },
+  { name: 'Dashboard IA', path: '/', icon: Wallet },
   { name: 'Live Feed', path: '/feed', icon: Activity },
   { name: 'Agenda', path: '/agenda', icon: Calendar },
 ]
@@ -97,7 +97,7 @@ export default function Layout() {
             </span>
           </div>
         </header>
-        <main className="flex-1 p-4 md:p-6 w-full max-w-7xl mx-auto overflow-x-hidden">
+        <main className="flex-1 flex flex-col overflow-hidden">
           <Outlet />
         </main>
       </div>
