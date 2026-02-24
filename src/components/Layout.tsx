@@ -97,7 +97,7 @@ export default function Layout() {
             </span>
           </div>
         </header>
-        <main className="flex-1 p-4 md:p-6 w-full max-w-7xl mx-auto overflow-x-hidden">
+        <main className="flex-1 flex flex-col overflow-hidden">
           <Outlet />
         </main>
       </div>
